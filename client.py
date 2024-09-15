@@ -48,14 +48,14 @@ def connect():
 
     threading.Thread(target=scan_from_server,args=(c, )).start()
 
-    #text_box.config(state=tk.DISABLED)
-    #user_button.config(state=tk.DISABLED)
+    text_box.config(state=tk.DISABLED)
+    user_button.config(state=tk.DISABLED)
 
 def send_message():
     response = tokan_box.get()
     if(response!=''):
         c.sendall(response.encode())
-        #chat_box.delete(0,len(response))
+        chat_box.delete(0,len(response))
     else:
         messagebox.showerror("Empty message!!!")
         exit(0)
