@@ -16,11 +16,13 @@ ORCHID2 = "#EE7AE9"
 LIMEGREEN = "#32CD32"
 YELLOW = "#FFFF00"
 WHITE = "white"
-GRAY ="#1F1F1F"
+GRAY ="#525252"
+SILVER = "silver"
+LITE_GREEN="#66CD00"
 BLACK = "black"
 BLUE="blue"
-FONT = ("Helvetia", 17)
-BUTTON_FONT = ("Helvetia",14)
+FONT = ("Helvetia", 22)
+BUTTON_FONT = ("Arial Black",14)
 
 c=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
@@ -55,13 +57,13 @@ def send_message():
     response = tokan_box.get()
     if(response!=''):
         c.sendall(response.encode())
-        chat_box.delete(0,len(response))
+        #chat_box.delete(0,len(response))
     else:
         messagebox.showerror("Empty message!!!")
         exit(0)
 
 obj=tk.Tk()        # tkinter window
-obj.geometry("600x600")
+obj.geometry("750x700")
 obj.title("CHAT ROOM")
 #obj.resizeable(False, False)
 obj.grid_rowconfigure(0, weight=1)
@@ -69,35 +71,35 @@ obj.grid_rowconfigure(1,weight=4)
 obj.grid_rowconfigure(2,weight=1)
 
 # creating frames
-top=tk.Frame(obj,width=600,height=100,bg=CHARTREUSE1)
+top=tk.Frame(obj,width=600,height=100,bg=SILVER)
 #definging the position of top frame
 top.grid(row=0, column=0,sticky=tk.NSEW)
 
 middle=tk.Frame(obj,width=600,height=400,bg=AQUA)
 middle.grid(rows=1,column=0,sticky=tk.NSEW)
 
-bottom=tk.Frame(obj,width=600,height=100,bg=CHARTREUSE3)
+bottom=tk.Frame(obj,width=600,height=100,bg=SILVER)
 bottom.grid(row=2,column=0,sticky=tk.NSEW)
 
-text_label = tk.Label(top,text="ENTER USERNAME :",font= FONT,bg= BLACK,fg= AQUA)
+text_label = tk.Label(top,text="ENTER USERNAME :",font= FONT,bg= LITE_GREEN,fg= BLACK)
 text_label.pack(side=tk.LEFT, padx=8)        #(side for label , spaceing from that side)
 
 text_box = tk.Entry(top, font=FONT,bg=WHITE,fg=BLACK,width=20)
 text_box.pack(side=tk.LEFT, padx=8)
 
-user_button = tk.Button(top,text="JOIN",font=FONT, bg=BLUE,fg=AQUA,command=connect)
+user_button = tk.Button(top,text="JOIN",font=FONT, bg=LITE_GREEN,fg=BLACK,command=connect)
 user_button.pack(side=tk.LEFT,padx=8)
 
-tokan_label=tk.Label(bottom,text="ENTER MESSAGE : ",font=FONT,bg=BLACK,fg=AQUA)
+tokan_label=tk.Label(bottom,text="ENTER MESSAGE : ",font=FONT,bg=LITE_GREEN,fg=BLACK)
 tokan_label.pack(side=tk.LEFT,padx=8)
 
 tokan_box =tk.Entry(bottom,font=FONT,bg=WHITE,fg=BLACK,width=20)
 tokan_box.pack(side=tk.LEFT, padx=8)
 
-tokan_button =tk.Button(bottom,text="SEND",font=FONT,bg=BLUE,fg=AQUA,command=send_message)
+tokan_button =tk.Button(bottom,text="SEND",font=FONT,bg=LITE_GREEN,fg=BLACK,command=send_message)
 tokan_button.pack(side=tk.LEFT,padx=8)
 
-chat_box = scrolledtext.ScrolledText(middle,font=BUTTON_FONT,bg=BLACK,fg=WHITE,width=65,height=25)
+chat_box = scrolledtext.ScrolledText(middle,font=BUTTON_FONT,bg=GRAY,fg=WHITE,width=65,height=25)
 chat_box.config(state=tk.DISABLED)          # To disable the text input at update box
 chat_box.pack(side=tk.LEFT,padx=8)
 
